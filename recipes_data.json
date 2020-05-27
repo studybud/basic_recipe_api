@@ -1,0 +1,14 @@
+{
+  "recipes": [
+    {
+      "id": 1,
+      "name": "Egg Salad",
+      "description": "This is a lovely egg salad recipe."
+    },
+    {
+      "id": 2,
+      "name": "Tomato Pasta",
+      "description": "This is a lovely tomato pasta recipe."
+    }
+  ]
+}
