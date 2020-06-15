@@ -1,5 +1,11 @@
 from flask import Flask, jsonify, request
 from http import HTTPStatus
+import logging
+
+# create logger
+logger = logging.getLogger(logging.basicConfig(level=logging.DEBUG,
+                                               format='%(asctime)s [%(levelname)s]: %(message)s'))
+# logging.basicConfig(level=logging.DEBUG, format=f'{asctime} [{levelname}]: {message}')
 
 app = Flask(__name__)
 
@@ -42,10 +48,11 @@ def get_recipes():
 @app.route('/recipes/<int:recipe_id>', methods=['GET'])
 def get_recipe_by_id(recipe_id):
 
-    print(f"recipe id requested: {recipe_id}")
+    # print(f"recipe id requested: {recipe_id}")
+    logger.info(f"recipe id requested: {recipe_id}")
     # iterate through recipes & retrieve ID requested or None if nor
     recipe = next((recipe for recipe in recipes if recipe["id"] == recipe_id), None)
-    print(f"recipe found: {recipe}")
+    logger.info(f"recipe found: {recipe}")
 
     if recipe:
         return jsonify(recipe)
@@ -56,4 +63,4 @@ def get_recipe_by_id(recipe_id):
 
 
 if __name__ == "__main__":
-    app.run()
+    app.run(debug=True, host='0.0.0.0', port='5000')
