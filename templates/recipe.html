@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Recipe</title>
+</head>
+<body>
+    <!--    recipe code goes here-->
+    recipe goes here... <br>
+        {{ recipe }}
+    <br>
+    <pre id="json">{{ recipe }}</pre>
+    <br>
+    <script>
+        document.write({{ recipe }})
+        document.getElementById("json").innerHTML = JSON.stringify({{ recipe }}, undefined, 2);
+    </script>
+
+</body>
+</html>
