@@ -86,16 +86,16 @@ def get_recipe_by_id(recipe_id):
 @app.route('/recipes/name/<string:search_keyword>', methods=['GET'])
 def get_recipe_by_search_keyword(search_keyword):
     """have to say something here"""
-    print(f"searching for recipes by name: {search_keyword}")
+    logger.info(f"searching for recipes by name: {search_keyword}")
     # iterate through recipes & retrieve ID requested or None if not found
     # recipes_found = next((recipe for recipe in recipes if search_keyword.lower() in recipe["name"].lower()), None)
     recipes_found = [recipe for recipe in recipes if search_keyword.lower() in recipe["name"].lower()]
-    print(f"recipes found: {recipes_found}")
+    logger.info(f"recipes found: {recipes_found}")
 
     if recipes_found:
+        logger.info(f"retuning: recipes requested: {search_keyword} \nrecipe found: {recipes_found}")
         return jsonify(recipes_found)
 
-    print(f"retuning: recipes requested: {search_keyword} \nrecipe found: {recipes_found}")
     return jsonify({"message": "recipe\\s not found"}), HTTPStatus.NOT_FOUND
 # ///////////////////////////////////////////////////////////////////////////////////////
 
