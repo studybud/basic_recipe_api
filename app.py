@@ -39,6 +39,11 @@ recipes = [
         'description': 'This is crunchy sticky toasted cheese recipe.',
         'ingredients': ['bread', 'mayonnaise', 'butter', 'salt', 'pepper', 'tomato - optional'],
         'method': 'mix everything nicely!'
+    },
+    {
+        "id": 5,
+        "name": "Cheese Pizza",
+        "description": "This is a lovely cheese pizza"
     }
 ]
 
@@ -105,7 +110,7 @@ def get_recipe_by_search_keyword(search_keyword):
 def create_recipe():
     """have to say something here"""
     data_submitted = request.get_json()
-
+    logger.info(f"data request type: {type(data_submitted)} - data request:: {data_submitted}")
     name = data_submitted.get('name')
     description = data_submitted.get('description')
 
