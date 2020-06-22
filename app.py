@@ -148,6 +148,26 @@ def update_recipe(recipe_id):
 # ///////////////////////////////////////////////////////////////////////////////////////
 
 
+# ///////////////////////////////////////////////////////////////////////////////////////
+@app.route('/recipes/<int:recipe_id>', methods=['DELETE'])
+def delete_recipe(recipe_id):
+    """have to say something here"""
+    logger.info(f"recipe id to delete: {recipe_id}")
+    recipe = next((recipe for recipe in recipes if recipe['id'] == recipe_id), None)
+    logger.info(f"recipe to delete type: {type(recipe)}")
+    if not recipe:
+        return jsonify({'message': f'recipe {recipe_id} not found'}), HTTPStatus.NOT_FOUND
+
+    logger.info(f"recipe len: {len(recipes)}, index: {recipes.index(recipe)}")
+    recipe_deleted = recipes.pop(recipes.index(recipe))
+    # recipe_deleted = recipes.remove(recipe)
+
+    # return jsonify(recipe)
+    # return jsonify({"deleted": recipe_deleted}), HTTPStatus.NO_CONTENT
+    return jsonify({"deleted": recipe_deleted})
+# ///////////////////////////////////////////////////////////////////////////////////////
+
+
 if __name__ == "__main__":
     # print helper urls to test with
     import helper_urls
